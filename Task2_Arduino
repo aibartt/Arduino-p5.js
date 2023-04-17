@@ -48,19 +48,16 @@ void loop() {
   while (Serial.available()) {
     digitalWrite(LED_BUILTIN, HIGH); // led on while receiving data
 
-    int left = Serial.parseInt();
     int right = Serial.parseInt();
+    int left = Serial.parseInt();
     if (Serial.read() == '\n') {
-      digitalWrite(leftLedPin, left);
-      digitalWrite(rightLedPin, right);
-      int sensor = analogRead(A0);
-      delay(5);
-      int sensor2 = analogRead(A1);
-      delay(5);
-      Serial.print(sensor);
-      Serial.print(',');
-      Serial.println(sensor2);
-    }
+    digitalWrite(leftLedPin, left);
+    analogWrite(rightLedPin, right);
+    int sensor = analogRead(A0);
+    delay(5);
+    int sensor2 = analogRead(A1);
+    delay(5);
+    Serial.print(sensor);
+    Serial.print(',');
+    Serial.println(sensor2);
   }
-  digitalWrite(LED_BUILTIN, LOW);
-}
